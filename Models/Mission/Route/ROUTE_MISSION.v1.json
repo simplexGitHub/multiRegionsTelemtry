@@ -1,0 +1,94 @@
+{
+  "title": "ROUTE_MISSION",
+  "type": "object",
+  "x-examples": {},
+  "description": "The route mission data",
+  "examples": [
+    {
+      "routeMission": {
+        "yaw": 0,
+        "toBody": true,
+        "velocity": 12,
+        "actionOnRouteEnd": "Hover",
+        "routePoints": [
+          {
+            "yaw": 0,
+            "toBody": true,
+            "velocity": 0,
+            "PointLocation": {
+              "geometry": {
+                "type": "string",
+                "coordinates": [
+                  -117.199,
+                  32.8969,
+                  0
+                ]
+              }
+            }
+          },
+          {
+            "yaw": 0,
+            "toBody": true,
+            "velocity": 0,
+            "PointLocation": {
+              "geometry": {
+                "type": "string",
+                "coordinates": [
+                  -117.199,
+                  32.8976,
+                  0
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "name": "Route Example"
+    }
+  ],
+  "properties": {
+    "routeMission": {
+      "type": "object",
+      "properties": {
+        "velocity": {
+          "type": "number",
+          "description": "UAV velocity in m/s during route (if not defined different at points of route)",
+          "exclusiveMinimum": 0
+        },
+        "actionOnRouteEnd": {
+          "type": "string",
+          "enum": [
+            "Loiter",
+            "Hold",
+            "Hover"
+          ],
+          "description": "Action when route ends"
+        },
+        "routePoints": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "$ref": "./POINT_OF_ROUTE_DATA.v1.json"
+          }
+        }
+      },
+      "required": [
+        "velocity",
+        "actionOnRouteEnd",
+        "routePoints"
+      ]
+    },
+    "name": {
+      "type": "string",
+      "description": "The mission name"
+    }
+  },
+  "required": [
+    "name"
+  ],
+  "x-vendored-from": {
+    "repo": "FlightOps-Mission-API",
+    "path": "Models/Mission/Route/ROUTE_MISSION.v1.json",
+    "date": "2026-06-01"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "x-stoplight": {
+    "id": "u2erggy93vpgo"
+  },
+  "description": "Forces the uav to go through a static part in a dynamically created route. Order = array indexes. Height can be provided as AGL/ASL/ATP. If height is not provided, operational alt is used.",
+  "type": "array",
+  "minItems": 2,
+  "items": {
+    "$ref": "./FORCE_BY_ROUTE_POINT.json"
+  },
+  "x-vendored-from": {
+    "repo": "FlightOps-Mission-API",
+    "path": "Models/Mission/MissionRequests/FORCE_BY_ROUTE_DATA.json",
+    "date": "2026-06-01"
+  }
+}

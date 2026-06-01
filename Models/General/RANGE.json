@@ -1,0 +1,26 @@
+{
+  "title": "RANGE",
+  "x-stoplight": {
+    "id": "u8bz3gsxyw8c6"
+  },
+  "type": "object",
+  "properties": {
+    "min": {
+      "type": "number",
+      "description": "Minimum permitted AGL altitude for the mission, in meters; must be lower than `altitudeRange_AGL.max`."
+    },
+    "max": {
+      "type": "number",
+      "description": "Maximum permitted AGL altitude for the mission, in meters; must be higher than `altitudeRange_AGL.min`."
+    }
+  },
+  "required": [
+    "min",
+    "max"
+  ],
+  "x-vendored-from": {
+    "repo": "FlightOps-Mission-API",
+    "path": "Models/General/RANGE.json",
+    "date": "2026-06-01"
+  }
+}

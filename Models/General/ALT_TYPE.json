@@ -1,0 +1,16 @@
+{
+  "$id": "enums/ALT_TYPE.schema.json",
+  "type": "string",
+  "enum": [
+    "AGL",
+    "ASL",
+    "ATP"
+  ],
+  "default": "AGL",
+  "example": "AGL",
+  "x-vendored-from": {
+    "repo": "FlightOps-Mission-API",
+    "path": "Models/General/ALT_TYPE.json",
+    "date": "2026-06-01"
+  }
+}

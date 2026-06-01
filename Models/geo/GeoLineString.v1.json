@@ -1,0 +1,35 @@
+{
+  "title": "GeoLineString",
+  "type": "object",
+  "properties": {
+    "geometry": {
+      "type": "object",
+      "required": [
+        "type",
+        "coordinates"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "default": "LineString",
+          "example": "LineString"
+        },
+        "coordinates": {
+          "type": "array",
+          "minItems": 4,
+          "items": {
+            "$ref": "./POINT3D.v1.json"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "geometry"
+  ],
+  "x-vendored-from": {
+    "repo": "FlightOps-Mission-API",
+    "path": "Models/geo/GeoLineString.v1.json",
+    "date": "2026-06-01"
+  }
+}

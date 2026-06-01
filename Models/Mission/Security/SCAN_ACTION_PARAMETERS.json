@@ -1,0 +1,41 @@
+{
+  "title": "SCAN_ACTION_PARAMETERS",
+  "type": "object",
+  "properties": {
+    "startScanYaw": {
+      "type": "number"
+    },
+    "finishScanYaw": {
+      "type": "number"
+    },
+    "relType": {
+      "type": "string",
+      "enum": [
+        "North",
+        "Body"
+      ]
+    },
+    "pitch": {
+      "type": "number"
+    },
+    "direction": {
+      "type": "string",
+      "enum": [
+        "clockwise",
+        "counterClockwise"
+      ]
+    }
+  },
+  "required": [
+    "startScanYaw",
+    "finishScanYaw",
+    "relType",
+    "pitch",
+    "direction"
+  ],
+  "x-vendored-from": {
+    "repo": "FlightOps-Mission-API",
+    "path": "Models/Mission/Security/SCAN_ACTION_PARAMETERS.json",
+    "date": "2026-06-01"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "title": "GEOPOINT_3D_SHORT",
+  "type": "object",
+  "x-examples": {},
+  "properties": {
+    "lat": {
+      "type": "number",
+      "minimum": -90,
+      "example": 34.81,
+      "maximum": 90
+    },
+    "lon": {
+      "type": "number",
+      "minimum": -180,
+      "example": 32.161,
+      "maximum": 180
+    },
+    "alt": {
+      "type": "number",
+      "example": 50,
+      "default": 50
+    }
+  },
+  "required": [
+    "lat",
+    "lon",
+    "alt"
+  ],
+  "x-vendored-from": {
+    "repo": "FlightOps-Mission-API",
+    "path": "Models/geo/GEOPOINT_3D_SHORT.v1.json",
+    "date": "2026-06-01"
+  }
+}

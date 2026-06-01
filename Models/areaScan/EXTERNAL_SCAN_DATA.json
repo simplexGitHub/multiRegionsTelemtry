@@ -1,0 +1,35 @@
+{
+  "title": "EXTERNAL_SCAN_DATA",
+  "x-stoplight": {
+    "id": "iyze4xr6zko4r"
+  },
+  "type": "object",
+  "properties": {
+    "metadata": {
+      "$ref": "../MissionGeneralTypes/TASK_METADATA.json"
+    },
+    "triggerPoints": {
+      "type": "array",
+      "items": {
+        "$ref": "./TRIGGER_POINTS.json"
+      }
+    },
+    "points": {
+      "type": "array",
+      "items": {
+        "$ref": "../geo/POINT.v1.json"
+      }
+    }
+  },
+  "required": [
+    "metadata",
+    "triggerPoints",
+    "points"
+  ],
+  "x-vendored-from": {
+    "repo": "FlightOps-Mission-API",
+    "path": "Models/areaScan/EXTERNAL_SCAN_DATA.json",
+    "date": "2026-06-01"
+  },
+  "x-vendor-note": "One or more $ref paths were corrected during vendoring: {\"../Gimbal/TASK_METADATA.json\":\"../MissionGeneralTypes/TASK_METADATA.json\"} (upstream pointed at a path that does not exist; target relocated to its real location)."
+}

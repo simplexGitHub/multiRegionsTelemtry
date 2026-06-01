@@ -1,0 +1,92 @@
+{
+  "allOf": [
+    {
+      "type": "object",
+      "properties": {
+        "missionId": {
+          "type": "string",
+          "description": "Unique ID of mission"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Route",
+            "Point",
+            "WASP",
+            "Security",
+            "Ship",
+            "ShipWithoutLanding",
+            "DeliveryPoint",
+            "Dynamic",
+            "TargetTracking"
+          ],
+          "description": "Type of mission"
+        },
+        "status": {
+          "type": "string",
+          "description": "Mission's status",
+          "enum": [
+            "Started",
+            "Stopped",
+            "StopProccess"
+          ]
+        },
+        "totalLength": {
+          "type": "string",
+          "description": "Total length of route from home to end of mission in meters"
+        },
+        "pilotId": {
+          "type": "string"
+        },
+        "creationTime": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "missionId",
+        "type",
+        "status"
+      ]
+    },
+    {
+      "oneOf": [
+        {
+          "$ref": "../Route/ROUTE_MISSION.v1.json"
+        },
+        {
+          "$ref": "../Point/POINT_MISSION.v1.json"
+        },
+        {
+          "$ref": "../Security/SECURITY_MISSION.v1.json"
+        },
+        {
+          "$ref": "../Wasp/WASP_MISSION.v1.json"
+        },
+        {
+          "$ref": "../TargetTracking/TARGET_TRACKING_MISSION.json"
+        },
+        {
+          "$ref": "../Ship/SHIP_MISSION.v1.json"
+        },
+        {
+          "$ref": "../DynamicPoint/DYNAMIC_POINT_MISSIOM.json"
+        },
+        {
+          "$ref": "../DeliveryPoint/DELIVERY_POINT_MISSION.json"
+        },
+        {
+          "$ref": "../Patrol/MAPI_PATROL_MISSION.json",
+          "x-stoplight": {
+            "id": "tixujdrfcyqs6"
+          }
+        }
+      ]
+    }
+  ],
+  "title": "",
+  "x-vendored-from": {
+    "repo": "FlightOps-Mission-API",
+    "path": "Models/Mission/MissionTelemetryData/MissionTelemetryData.v1.json",
+    "date": "2026-06-01"
+  }
+}

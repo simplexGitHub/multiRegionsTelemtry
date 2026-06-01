@@ -1,0 +1,21 @@
+{
+  "title": "POINT_OF_ROUTE_DATA",
+  "type": "object",
+  "properties": {
+    "velocity": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "PointLocation": {
+      "$ref": "../../geo/GeoPoint.v1.json"
+    }
+  },
+  "required": [
+    "PointLocation"
+  ],
+  "x-vendored-from": {
+    "repo": "FlightOps-Mission-API",
+    "path": "Models/Mission/Route/POINT_OF_ROUTE_DATA.v1.json",
+    "date": "2026-06-01"
+  }
+}

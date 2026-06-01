@@ -1,0 +1,22 @@
+{
+  "title": "MissionTelemetryItem",
+  "description": "One entry of a region's MissionsTelemetry array: all fields of the MAPI mission telemetry (as sent by MAPI), with the epoch-ms timestamp of the last change merged in.",
+  "allOf": [
+    {
+      "$ref": "../Mission/MissionTelemetryData/MissionTelemetryData.v1.json"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "timestampLastChanged": {
+          "type": "number",
+          "description": "Epoch-ms of the last time this item's data changed.",
+          "example": 1771503605668
+        }
+      },
+      "required": [
+        "timestampLastChanged"
+      ]
+    }
+  ]
+}

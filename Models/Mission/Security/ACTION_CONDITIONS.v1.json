@@ -1,0 +1,33 @@
+{
+  "title": "ACTION_CONDITIONS",
+  "type": "object",
+  "properties": {
+    "velocity": {
+      "type": "number"
+    },
+    "altitude": {
+      "type": "number"
+    },
+    "pointReached": {
+      "type": "boolean"
+    },
+    "timeFromRelativeAction": {
+      "type": "number"
+    },
+    "relWithAction": {
+      "type": "string",
+      "enum": [
+        "startToStart",
+        "endToStart"
+      ]
+    },
+    "relativeActionId": {
+      "type": "string"
+    }
+  },
+  "x-vendored-from": {
+    "repo": "FlightOps-Mission-API",
+    "path": "Models/Mission/Security/ACTION_CONDITIONS.v1.json",
+    "date": "2026-06-01"
+  }
+}

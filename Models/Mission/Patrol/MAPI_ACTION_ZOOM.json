@@ -1,0 +1,35 @@
+{
+  "title": "MAPI_ACTION_ZOOM",
+  "x-stoplight": {
+    "id": "4frvupo0hfp9b"
+  },
+  "type": "object",
+  "properties": {
+    "preActionZoom": {
+      "type": "number",
+      "x-stoplight": {
+        "id": "bolvlketpz7uc"
+      },
+      "minimum": 0,
+      "maximum": 100,
+      "example": 0,
+      "default": 0
+    },
+    "postActionZoom": {
+      "type": "number",
+      "x-stoplight": {
+        "id": "ymsvvyyaurdgl"
+      },
+      "minimum": 0,
+      "maximum": 100,
+      "example": 0,
+      "default": 0
+    }
+  },
+  "description": "The camera zoom before or after the action. If the value is not specified, the system does not change the zoom.",
+  "x-vendored-from": {
+    "repo": "FlightOps-Mission-API",
+    "path": "Models/Mission/Patrol/MAPI_ACTION_ZOOM.json",
+    "date": "2026-06-01"
+  }
+}

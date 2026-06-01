@@ -1,0 +1,90 @@
+{
+  "$id": "types/MAPI_POINT_PATROL.schema.json",
+  "x-stoplight": {
+    "id": "b79a6e189334e"
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "description": "Ordered list of waypoint objects that define the patrol route",
+  "properties": {
+    "velocity": {
+      "type": "number",
+      "minimum": 0.1,
+      "maximum": 15,
+      "description": "Cruise speed for the next leg, in meters per second.",
+      "x-stoplight": {
+        "id": "c43n2bx0ncmeb"
+      }
+    },
+    "altType": {
+      "$ref": "../../General/ALT_TYPE.json",
+      "description": "Altitude reference for this waypoint when `staticPartAltType` is `manualAlt`: `AGL` (above ground level), `ASL` (above sea level), or `ATP` (above take-off point).",
+      "x-stoplight": {
+        "id": "1ntmtkizhvq6a"
+      }
+    },
+    "altitude": {
+      "type": "number",
+      "description": "Altitude for this waypoint, in meters, interpreted by `altType`; applies only when `staticPartAltType` is `manualAlt`. If omitted, the drone’s operational altitude is used.",
+      "x-stoplight": {
+        "id": "3167bs98gjune"
+      }
+    },
+    "headingType": {
+      "$ref": "../../General/AUTO_FREE_FIXED.json",
+      "description": "Determines how the aircraft’s heading is handled on the next leg: **`Auto`** (default) keeps the nose aligned with the flight path, **`Free`** follows the mission-level heading but allows mid-flight adjustment, and **`Fixed`** locks the heading to the mission’s preset angle.",
+      "x-stoplight": {
+        "id": "qz5cx4wxqunbs"
+      }
+    },
+    "headingRelativeLeg": {
+      "type": "number",
+      "description": "Heading offset in degrees relative to the direction of the current leg (0 = facing forward, 180 = backward); respected when headingType is Free or Fixed, ignored when headingType is Auto.",
+      "x-stoplight": {
+        "id": "1g74sm3d3y9kq"
+      }
+    },
+    "latitude": {
+      "type": "number",
+      "minimum": -90,
+      "maximum": 90,
+      "x-stoplight": {
+        "id": "dw5um7uownkxu"
+      }
+    },
+    "longitude": {
+      "type": "number",
+      "minimum": -180,
+      "maximum": 180,
+      "x-stoplight": {
+        "id": "ibcalftiwgxq8"
+      }
+    },
+    "actions": {
+      "type": "array",
+      "description": "Gimbal actions to run at this waypoint. The actions array can contain only one action of each type (`scan`, `gimbalMove`, `gimbalMoveFlying`) , or be an empty array.",
+      "minItems": 0,
+      "maxItems": 3,
+      "x-stoplight": {
+        "id": "e6w9bz5pc7g6v"
+      },
+      "items": {
+        "$ref": "./MAPI_PATROL_ACTION.json",
+        "x-stoplight": {
+          "id": "70zbrsxuoawpc"
+        }
+      }
+    }
+  },
+  "required": [
+    "velocity",
+    "altType",
+    "latitude",
+    "longitude"
+  ],
+  "x-vendored-from": {
+    "repo": "FlightOps-Mission-API",
+    "path": "Models/Mission/Patrol/MAPI_POINT_PATROL.json",
+    "date": "2026-06-01"
+  }
+}

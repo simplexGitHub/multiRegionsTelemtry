@@ -1,0 +1,57 @@
+{
+  "title": "CONDITION_ACTION_STATUS",
+  "x-stoplight": {
+    "id": "caixd74n5mu59"
+  },
+  "type": "object",
+  "properties": {
+    "actionId": {
+      "type": "string"
+    },
+    "actionType": {
+      "type": "string",
+      "enum": [
+        "maneuver",
+        "Scan",
+        "Stow",
+        "Move",
+        "ExternalAction",
+        "IR_Lock",
+        "Winch",
+        "Drop",
+        "Zoom",
+        "Install",
+        "externalInput",
+        "none"
+      ]
+    },
+    "actionStatus": {
+      "type": "number"
+    },
+    "conditionStatus": {
+      "type": "number"
+    },
+    "actionKey": {
+      "type": "object",
+      "properties": {
+        "flightId": {
+          "type": "string"
+        },
+        "pointId": {
+          "type": "string"
+        },
+        "actionId": {
+          "type": "string"
+        }
+      }
+    },
+    "metadata": {
+      "type": "object"
+    }
+  },
+  "x-vendored-from": {
+    "repo": "FlightOps-Mission-API",
+    "path": "Models/Mission/Security/CONDITION_ACTION_STATUS.json",
+    "date": "2026-06-01"
+  }
+}

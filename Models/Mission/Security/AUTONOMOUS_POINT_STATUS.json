@@ -1,0 +1,23 @@
+{
+  "title": "AUTONOMOUS_POINT_STATUS",
+  "x-stoplight": {
+    "id": "3fct2bvqmmqdr"
+  },
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "actions": {
+      "type": "array",
+      "items": {
+        "$ref": "./CONDITION_ACTION_STATUS.json"
+      }
+    }
+  },
+  "x-vendored-from": {
+    "repo": "FlightOps-Mission-API",
+    "path": "Models/Mission/Security/AUTONOMOUS_POINT_STATUS.json",
+    "date": "2026-06-01"
+  }
+}

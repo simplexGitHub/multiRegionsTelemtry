@@ -1,0 +1,673 @@
+{
+  "title": "airVehicle",
+  "type": "object",
+  "x-examples": {},
+  "description": "The air vehicle entity",
+  "examples": [],
+  "properties": {
+    "id": {
+      "type": "string",
+      "example": "localhost:7705",
+      "description": "Unique ID of Air vehicle"
+    },
+    "ip": {
+      "type": "string",
+      "example": "localhost:7705",
+      "description": "IP of Air vehicle onboard"
+    },
+    "name": {
+      "type": "string"
+    },
+    "missionId": {
+      "type": "string",
+      "description": "ID of task the Air vehicle is assigned to. Empty if unassigned"
+    },
+    "pilotId": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "dji",
+        "alpha",
+        "pixhawk"
+      ],
+      "example": "dji",
+      "description": "Type of Air vehicle"
+    },
+    "routeStatus": {
+      "type": "string",
+      "description": "Air vehicle status in route. Empty if Air vehicle is unassigned",
+      "example": "Stop",
+      "enum": [
+        "Not Active",
+        "Paused",
+        "Stopped",
+        "Running"
+      ]
+    },
+    "energy": {
+      "type": "number",
+      "example": 85,
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Remaining energy in percent"
+    },
+    "energyConsumption": {
+      "type": "number",
+      "description": "Energy Consumption in percent per second"
+    },
+    "location": {
+      "$ref": "../geo/GeoPoint.v1.json",
+      "description": "The drone location and flight altitude ASL\n"
+    },
+    "heading": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 360,
+      "example": 45,
+      "description": "Heading relative to north in degrees"
+    },
+    "homePoint": {
+      "$ref": "../geo/GeoPoint.v1.json"
+    },
+    "operationalAlt": {
+      "type": "number",
+      "example": 50,
+      "description": "Altitude the Air vehicle operates in, measured in meters"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Not Active",
+        "Ready",
+        "Ready Allocated",
+        "Take Off",
+        "Return Home",
+        "Landing",
+        "On Mission",
+        "Observing",
+        "Manual",
+        "Ready On Air",
+        "Ready On Air Allocated",
+        "External Control"
+      ],
+      "example": "Ready",
+      "description": "Status of Air vehicle"
+    },
+    "height": {
+      "type": "number",
+      "example": 50,
+      "description": "Height above takeoff in meters"
+    },
+    "distanceFromHome": {
+      "type": "number",
+      "minimum": 0,
+      "example": 0,
+      "description": "Distance from home in meters"
+    },
+    "gps_health": {
+      "type": "number",
+      "example": 5,
+      "minimum": 0,
+      "maximum": 5,
+      "description": "Health of GPS"
+    },
+    "velocity": {
+      "type": "number",
+      "minimum": 0,
+      "example": 10,
+      "description": "Air vehicle velocity in meter per second"
+    },
+    "minAltitude": {
+      "type": "number",
+      "example": 50,
+      "description": "The minimum altitude for Air vehicle to fly in meters"
+    },
+    "maxAltitude": {
+      "type": "number",
+      "example": 80,
+      "description": "The maximum altitude for Air vehicle to fly in meters"
+    },
+    "availableSlots": {
+      "type": "array",
+      "description": "Altitude ranges that are available for Air vehicle to select height from",
+      "items": {
+        "type": "number"
+      }
+    },
+    "energyForReturnHome": {
+      "type": "number",
+      "example": 40,
+      "description": "Energy percent that when reached, the Air vehicle should return home"
+    },
+    "timeToBeReplaced": {
+      "type": "number",
+      "example": 30,
+      "description": "Time left until drone should be replaced, measured in seconds"
+    },
+    "technicalStatus": {
+      "enum": [
+        "OK",
+        "Onboard Fail",
+        "Controller Fail"
+      ],
+      "description": "Connection status to services and components",
+      "type": "object",
+      "required": [
+        "onboard",
+        "controller",
+        "network"
+      ],
+      "properties": {
+        "onboard": {
+          "type": "string",
+          "enum": [
+            "OK",
+            "NoComm"
+          ]
+        },
+        "controller": {
+          "type": "string",
+          "enum": [
+            "OK",
+            "NoComm"
+          ]
+        },
+        "network": {
+          "type": "string",
+          "enum": [
+            "OK",
+            "NoComm"
+          ]
+        }
+      }
+    },
+    "controlledBy": {
+      "type": "string",
+      "enum": [
+        "Onboard",
+        "RC",
+        "C2",
+        "Joystick"
+      ],
+      "description": "The system the drone is controlled by"
+    },
+    "corridorPoints": {
+      "type": "array",
+      "description": "Corridor points",
+      "items": {
+        "$ref": "../geo/GEOPOINT3D.v1.json"
+      }
+    },
+    "airVehicleRoute": {
+      "$ref": "../geo/GeoLineString.v1.json"
+    },
+    "aglHeight": {
+      "description": "UAV height above ground",
+      "type": "number"
+    },
+    "voltage": {
+      "type": "number",
+      "description": "battery voltage"
+    },
+    "current": {
+      "type": "number",
+      "description": "battery current"
+    },
+    "externalLocationData": {
+      "type": "object",
+      "description": "If external location is used, provides location and statuses of external location sensor",
+      "properties": {
+        "position": {
+          "$ref": "../geo/GEOPOINT3D.v1.json"
+        },
+        "navigationState": {
+          "type": "string",
+          "description": "State of EL navigation",
+          "enum": [
+            "Navigating",
+            "NotNavigating"
+          ]
+        },
+        "techStatus": {
+          "type": "string",
+          "description": "Technical status of EL sensor",
+          "enum": [
+            "Info",
+            "Warning",
+            "Error",
+            "DataNotReceived"
+          ]
+        },
+        "rawData": {
+          "type": "array",
+          "description": "Strings of information about internal statuses/errors of EL sensor",
+          "items": {
+            "type": "string"
+          }
+        },
+        "timestamp": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "position",
+        "navigationState",
+        "techStatus",
+        "timestamp"
+      ]
+    },
+    "lockedForRH": {
+      "type": "boolean",
+      "description": "Is return home command locked by UAV's internal state (winch is down for example). RH can be forced by adding isIgnoreLockedForRH param to RH command"
+    },
+    "onRhRequest": {
+      "type": "boolean",
+      "description": "If UAV received RH request. UAV will try to RH if not lockedForRH or cannot compute route"
+    },
+    "isNeedToRHOnEnergy": {
+      "type": "boolean",
+      "example": 30,
+      "description": "If drone needs to RH on energy"
+    },
+    "lockedForRHReasons": {
+      "type": "object",
+      "description": "Lists the reasons lockedForRH value is true",
+      "properties": {
+        "winch": {
+          "type": "boolean"
+        },
+        "manualStatus": {
+          "type": "boolean"
+        }
+      }
+    },
+    "onboardMessages": {
+      "type": "array",
+      "description": "The controller level data. \nThe array will include TBD config last messages queue . \nThe messages won't always be up to date and can show historical messages (for example if the drone is off).\nThe array could be empty if the drone is not connected or the drone controller data is not supported.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "controllerTimestamp": {
+            "type": "number",
+            "description": "The timestamp of the drone controlle. Notice that the timestamp can be not sync with the air vehicle telemetry."
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "INFO",
+              "WARNING",
+              "CRITICAL"
+            ],
+            "description": "The message status"
+          },
+          "description": {
+            "type": "string",
+            "description": "The message description"
+          }
+        },
+        "required": [
+          "controllerTimestamp",
+          "status",
+          "description"
+        ]
+      }
+    },
+    "sensorVector": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "description": "The gimbal vector line as drawn on FlightOps map",
+      "items": {
+        "$ref": "../geo/GEOPOINT-2.v1.json"
+      }
+    },
+    "estimatedRoute": {
+      "$ref": "../geo/GeoPoint.v1.json",
+      "description": "Estimated flyTO route"
+    },
+    "requestedLocation": {
+      "$ref": "../geo/GeoPoint.v1.json",
+      "description": "Requested FlyTo location"
+    },
+    "requestedAzimuth": {
+      "type": "number",
+      "description": "Requested azimuth of drone heading in FlyTo"
+    },
+    "algorithmStatus": {
+      "$ref": "../Mission/Security/AUTONOMOUS_ROUTE_PROGRESS_STATUS.json"
+    },
+    "dtmRoute": {
+      "$ref": "../generalServices/DTM_ROUTE.json"
+    },
+    "flightCommandServiceStatus": {
+      "$ref": "../generalServices/FLIGHT_COMMAND_SERVICE_STATUS.json"
+    },
+    "externalServices": {
+      "$ref": "../generalServices/EXTERNAL_SERVICES.json"
+    },
+    "flightId": {
+      "type": "string"
+    },
+    "taskType": {
+      "type": "string",
+      "enum": [
+        "blank",
+        "Route",
+        "Point",
+        "WASP",
+        "Security",
+        "Ship",
+        "ShipWithoutLanding",
+        "DeliveryPoint",
+        "DynamicPoint",
+        "MultiDeploy",
+        "TargetTracking",
+        "Patrol",
+        "AreaScan",
+        "TakeOffTask"
+      ]
+    },
+    "timestamp": {
+      "type": "number"
+    },
+    "elpData": {
+      "$ref": "../ELP/ELP_DATA.json"
+    },
+    "externalServicesData": {
+      "type": "object",
+      "properties": {
+        "SAS": {
+          "$ref": "../areaScan/EXTERNAL_SCAN_DATA.json"
+        }
+      },
+      "required": [
+        "SAS"
+      ]
+    },
+    "gimbalMode": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "9y1o01nar2kh3"
+      },
+      "enum": [
+        "NotActive",
+        "Auto",
+        "Manual",
+        "ExternalControl"
+      ],
+      "description": "The gimbal mode. NotActive if unknown, Auto if follows target, manual if controlled by user"
+    },
+    "routeIndexData": {
+      "type": "object",
+      "x-stoplight": {
+        "id": "uvumucw07zk43"
+      },
+      "description": "When drone is in mission, shows the current waypoint index the drone reached",
+      "properties": {
+        "current": {
+          "type": "number",
+          "x-stoplight": {
+            "id": "rhz0mol3k1ck1"
+          }
+        },
+        "total": {
+          "type": "number",
+          "x-stoplight": {
+            "id": "zbfwfelyrhhhj"
+          }
+        }
+      }
+    },
+    "headingMode": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "tqqxxjtnx2exx"
+      },
+      "default": "fixed",
+      "enum": [
+        "fixed",
+        "free"
+      ],
+      "description": "\"fixed\" - can not possible to change the Drone Heading. \"free\" - can to change the Dron Heading"
+    },
+    "zoomValue": {
+      "type": "number",
+      "x-stoplight": {
+        "id": "k9mp89rznxbqh"
+      },
+      "minimum": 0,
+      "maximum": 100,
+      "default": 0,
+      "description": "camera zoom value in percent from 0 to 100"
+    },
+    "wayPoints": {
+      "type": "object",
+      "description": "Current waypoints data for the air vehicle's active route",
+      "properties": {
+        "lengthOfPointsLeft": {
+          "type": "number",
+          "description": "Number of remaining waypoints in the route"
+        },
+        "isSettedVelocity": {
+          "type": "boolean",
+          "description": "Whether the velocity was successfully set for the current point"
+        },
+        "settedVelocity": {
+          "type": "number",
+          "description": "Last set velocity value"
+        },
+        "status": {
+          "type": "number",
+          "enum": [
+            -1,
+            0,
+            1,
+            2,
+            3
+          ],
+          "description": "Waypoints action status: 0 = start, 1 = stop, 2 = pause, 3 = resume, -1 = undefined"
+        },
+        "points": {
+          "type": "array",
+          "description": "Array of waypoint objects defining the route",
+          "items": {
+            "type": "object",
+            "properties": {
+              "longitude": {
+                "type": "number",
+                "description": "Waypoint longitude"
+              },
+              "latitude": {
+                "type": "number",
+                "description": "Waypoint latitude"
+              },
+              "altitude": {
+                "type": "number",
+                "description": "Waypoint altitude in meters"
+              },
+              "velocity": {
+                "type": "number",
+                "description": "Target velocity at this waypoint in m/s"
+              },
+              "yaw": {
+                "type": "number",
+                "description": "Target yaw angle; the drone begins setting this heading when departing from this point"
+              }
+            },
+            "required": [
+              "longitude",
+              "latitude",
+              "altitude",
+              "velocity",
+              "yaw"
+            ]
+          }
+        },
+        "distance2nextPoint": {
+          "type": "number",
+          "description": "Distance to next waypoint in meters"
+        }
+      }
+    },
+    "changeRouteStatus": {
+      "type": "string",
+      "enum": [
+        "Not Active",
+        "onRouteChangeProcess",
+        "onRouteChangePauseProcess",
+        "onRouteChangeFinishPauseProcess",
+        "onRouteChangeStopProcess",
+        "onRouteChangeFinishStopProcess",
+        "onRouteChangeComputeProcess",
+        "onRouteChangeFinished"
+      ],
+      "description": "Status of an in-progress route change operation"
+    },
+    "estimatedGimbalVector": {
+      "$ref": "../geo/GeoPoint.v1.json",
+      "description": "Estimated gimbal vector endpoint location"
+    },
+    "onboardTimestamp": {
+      "type": "number",
+      "description": "Timestamp from the onboard controller"
+    },
+    "onboardDelay": {
+      "type": "object",
+      "description": "Onboard communication delay information",
+      "properties": {
+        "isDelay": {
+          "type": "boolean",
+          "description": "Whether there is a significant delay with onboard communication"
+        },
+        "delayInMS": {
+          "type": "number",
+          "description": "Delay in milliseconds"
+        },
+        "timeDiffWithOnboard": {
+          "type": "number",
+          "description": "Time difference with onboard clock in milliseconds"
+        }
+      },
+      "required": [
+        "isDelay",
+        "delayInMS"
+      ]
+    },
+    "takeoffASLHeight": {
+      "type": "number",
+      "description": "Takeoff point altitude above sea level in meters"
+    },
+    "gimbal": {
+      "type": "object",
+      "description": "Current gimbal orientation angles",
+      "properties": {
+        "roll": {
+          "type": "number",
+          "description": "Gimbal roll angle in degrees"
+        },
+        "pitch": {
+          "type": "number",
+          "description": "Gimbal pitch angle in degrees"
+        },
+        "yaw": {
+          "type": "number",
+          "description": "Gimbal yaw angle in degrees"
+        }
+      },
+      "required": [
+        "pitch",
+        "yaw"
+      ]
+    },
+    "perimeterId": {
+      "type": "string",
+      "description": "ID of the perimeter this air vehicle belongs to"
+    },
+    "gimbalCorrectionPosible": {
+      "type": "object",
+      "description": "Indicates whether gimbal correction is currently possible. Relevant only when the drone is flying a Patrol task.",
+      "properties": {
+        "isPossible": {
+          "type": "boolean",
+          "description": "Whether gimbal correction can be applied"
+        },
+        "pointIndex": {
+          "type": "number",
+          "description": "Index of the patrol point in the task's polyline (not the flight route index) where the drone currently is"
+        },
+        "actionIndex": {
+          "type": "number",
+          "description": "Index of the action within the patrol point identified by pointIndex"
+        }
+      },
+      "required": [
+        "isPossible"
+      ]
+    },
+    "constraints": {
+      "type": "object",
+      "description": "Drone operational constraints and capability flags",
+      "properties": {
+        "isDisableStopMissionInTakeoff": {
+          "type": "boolean",
+          "description": "Whether stopping mission during takeoff is disabled"
+        },
+        "isDisableELP": {
+          "type": "boolean",
+          "description": "Whether ELP (Emergency Landing Point) is disabled"
+        },
+        "isDisableLandNow": {
+          "type": "boolean",
+          "description": "Whether Land Now command is disabled"
+        },
+        "isDisableAdjustHeading": {
+          "type": "boolean",
+          "description": "Whether heading adjustment is disabled"
+        },
+        "isHoldSupport": {
+          "type": "boolean",
+          "description": "Whether hold/hover in place is supported"
+        },
+        "gimbalYawAsDjiCommand": {
+          "type": "boolean",
+          "description": "Whether gimbal yaw is sent as DJI command format"
+        }
+      }
+    }
+  },
+  "required": [
+    "id",
+    "ip",
+    "name",
+    "type",
+    "energy",
+    "energyConsumption",
+    "location",
+    "heading",
+    "homePoint",
+    "operationalAlt",
+    "status",
+    "height",
+    "distanceFromHome",
+    "gps_health",
+    "velocity",
+    "minAltitude",
+    "maxAltitude",
+    "energyForReturnHome",
+    "timeToBeReplaced",
+    "technicalStatus",
+    "controlledBy",
+    "voltage",
+    "lockedForRH",
+    "onRhRequest",
+    "headingMode",
+    "zoomValue"
+  ],
+  "x-vendored-from": {
+    "repo": "FlightOps-Mission-API",
+    "path": "Models/AirVehicle/airVehicle.v1.json",
+    "date": "2026-06-01"
+  }
+}

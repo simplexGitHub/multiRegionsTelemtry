@@ -1,0 +1,18 @@
+{
+  "type": "string",
+  "title": "headingType",
+  "x-stoplight": {
+    "id": "2hl9q2boasbud"
+  },
+  "description": "The type of heading for the drone.\nToGimbal - the drone heading will follow the gimbal yaw.\nTo Route - will head to the route last leg direction.\nSet - Manually defined",
+  "enum": [
+    "ToGimbal",
+    "ToRoute",
+    "Set"
+  ],
+  "x-vendored-from": {
+    "repo": "FlightOps-Mission-API",
+    "path": "Models/Mission/MissionRequests/headingType.json",
+    "date": "2026-06-01"
+  }
+}

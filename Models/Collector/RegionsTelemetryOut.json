@@ -1,0 +1,17 @@
+{
+  "title": "RegionsTelemetryOut",
+  "type": "object",
+  "description": "Top-level websocket message broadcast by the Collector once per second. Holds one entry per region that is currently producing fresh telemetry. Regions whose newest telemetry is older than the configurable staleness window (telemetryStalenessThreshold) are omitted from the array.",
+  "properties": {
+    "regionsTele": {
+      "type": "array",
+      "description": "One entry per region currently producing fresh telemetry.",
+      "items": {
+        "$ref": "./RegionTelemetry.json"
+      }
+    }
+  },
+  "required": [
+    "regionsTele"
+  ]
+}

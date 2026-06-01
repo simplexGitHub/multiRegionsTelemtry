@@ -1,0 +1,147 @@
+{
+  "$id": "MAPI_PATROL_MISSION_V2.schema.json",
+  "x-stoplight": {
+    "id": "7ecd803081c31"
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "title": "MAPI_PATROL_MISSION",
+  "description": "is a single-request endpoint for programming an autonomous drone patrol route, including waypoint coordinates, altitude limits, speeds, and per-point camera view or scan actions.",
+  "examples": [
+    {
+      "name": "string",
+      "isAGL": true,
+      "altitudeRange_AGL": {
+        "min": 0,
+        "max": 0
+      },
+      "ASL_Max": 0,
+      "maxSlopeDegree": 0,
+      "isDynamicNFZ": true,
+      "isStopMission": true,
+      "isRHSameRoute": true,
+      "dynamicPartAltType": "auto",
+      "staticPartAltType": "operationalAlt",
+      "patrolPoints": [
+        {
+          "velocity": 0.1,
+          "altType": "AGL",
+          "altitude": 0,
+          "headingType": "Auto",
+          "headingRelativeLeg": 0,
+          "latitude": -90,
+          "longitude": -180,
+          "actions": [
+            {
+              "type": "scan",
+              "parameters": {
+                "yaw": 0,
+                "viewDistance": 0,
+                "relType": "FlightLeg"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "A descriptive title for the patrol mission.",
+      "x-stoplight": {
+        "id": "72179xdjd8yg1"
+      }
+    },
+    "isAGL": {
+      "type": "boolean",
+      "description": "True  → all altitude values are AGL and must fall within altitudeRange.min / altitudeRange.max.\nFalse → altitudes are instead derived from staticPartAltType, dynamicPartAltType, and any per-point values in patrolPoints",
+      "x-stoplight": {
+        "id": "qd1m34qk7zncz"
+      }
+    },
+    "altitudeRange_AGL": {
+      "$ref": "../../General/RANGE.json",
+      "x-stoplight": {
+        "id": "nt1b961xdyfl0"
+      }
+    },
+    "ASL_Max": {
+      "type": "number",
+      "description": "Highest permitted altitude (Above-Sea-Level) for the mission, in meters; if any waypoint or segment exceeds this value, the mission fails validation and cannot be uploaded to the drone.",
+      "x-stoplight": {
+        "id": "pl0brp42q14hy"
+      }
+    },
+    "maxSlopeDegree": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 90,
+      "x-stoplight": {
+        "id": "v72sx3vorc8wy"
+      },
+      "description": "Maximum allowed climb or descent angle between consecutive route points, in degrees; if any segment exceeds this value the mission is rejected. If the field is omitted, the system applies its configured default."
+    },
+    "isDynamicNFZ": {
+      "type": "boolean",
+      "description": "Adds a dynamic no-fly-zone “sleeve” along the route for operational-altitude flights (AGL and manual-altitude missions include the dynamic NFZ automatically).",
+      "x-stoplight": {
+        "id": "dufw5uib7kwuk"
+      }
+    },
+    "isStopMission": {
+      "type": "boolean",
+      "description": "Stops the mission automatically when the drone transitions to **Observing** status.",
+      "x-stoplight": {
+        "id": "sm15rvxgyur6e"
+      }
+    },
+    "isRHSameRoute": {
+      "type": "boolean",
+      "description": "Causes the Return-Home mission to follow the exact route of the first mission uploaded after takeoff. ",
+      "x-stoplight": {
+        "id": "tbrvnqoi76zy5"
+      }
+    },
+    "dynamicPartAltType": {
+      "$ref": "../../General/DYNAMIC_ALT_TYPE.json",
+      "description": "Controls the altitude mode for the dynamic legs (take-off → route and route → home) **only when `isAGL` is `false`**:\n\n* **\"auto\"** (default) — fly those legs at the dron’s operational altitude.\n* **\"forceByRoute\\_Alt\"** — fly to the route (and return home) using the first patrol point’s altitude settings\n",
+      "x-stoplight": {
+        "id": "nvokpe0r5yl37"
+      }
+    },
+    "staticPartAltType": {
+      "$ref": "../../General/STATIC_ALT_TYPE_MAPI.json",
+      "description": "Sets the altitude mode for the patrol route: \"operationalAlt\" (default) flies the entire route at the drone's operational altitude, while \"manualAlt\" lets each patrol point define its own altitude.",
+      "x-stoplight": {
+        "id": "o16mhwt5jk7sv"
+      }
+    },
+    "patrolPoints": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Ordered list of waypoint objects that define the patrol route and actions on each point",
+      "x-stoplight": {
+        "id": "mjrto3c8n76ri"
+      },
+      "items": {
+        "$ref": "./MAPI_POINT_PATROL.json",
+        "x-stoplight": {
+          "id": "6z04qge7nkn3o"
+        }
+      }
+    }
+  },
+  "required": [
+    "name",
+    "isAGL",
+    "dynamicPartAltType",
+    "staticPartAltType",
+    "patrolPoints"
+  ],
+  "x-vendored-from": {
+    "repo": "FlightOps-Mission-API",
+    "path": "Models/Mission/Patrol/MAPI_PATROL_MISSION.json",
+    "date": "2026-06-01"
+  }
+}

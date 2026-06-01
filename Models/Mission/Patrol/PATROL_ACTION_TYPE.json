@@ -1,0 +1,18 @@
+{
+  "$id": "enums/PATROL_ACTION_TYPE.schema.json",
+  "x-stoplight": {
+    "id": "f28d53bc8d4cf"
+  },
+  "type": "string",
+  "enum": [
+    "scan",
+    "gimbalMove",
+    "gimbalMoveFlying"
+  ],
+  "example": "gimbalMove",
+  "x-vendored-from": {
+    "repo": "FlightOps-Mission-API",
+    "path": "Models/Mission/Patrol/PATROL_ACTION_TYPE.json",
+    "date": "2026-06-01"
+  }
+}

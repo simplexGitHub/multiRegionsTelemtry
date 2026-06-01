@@ -1,0 +1,47 @@
+{
+  "title": "POINT_MISSION",
+  "type": "object",
+  "description": "A mission of viewing point. During the drone flight to the point the drone camera will auto follow the point location",
+  "examples": [
+    {
+      "targetPoint": {
+        "latitude": 32.8964,
+        "longitude": -117.19918,
+        "altitude": 100
+      },
+      "azimuthToPoint": true,
+      "viewingAngle": 270
+    }
+  ],
+  "properties": {
+    "targetPoint": {
+      "$ref": "../../geo/GEOPOINT3D.v1.json"
+    },
+    "azimuthToPoint": {
+      "description": "Constraint azimuth to point or leave to task to calculate",
+      "type": "boolean"
+    },
+    "viewingAngle": {
+      "description": "Viewing angle if azimuthToPoint is true",
+      "type": "number"
+    },
+    "distanceToTarget": {
+      "type": "number",
+      "description": "The distance the drone will observe the target on last point of flight.\nIf field was not sent - deafault config will be taken"
+    },
+    "isNoGPS": {
+      "type": "boolean",
+      "description": "Is mission without GPS"
+    }
+  },
+  "required": [
+    "targetPoint",
+    "azimuthToPoint",
+    "viewingAngle"
+  ],
+  "x-vendored-from": {
+    "repo": "FlightOps-Mission-API",
+    "path": "Models/Mission/Point/POINT_MISSION.v1.json",
+    "date": "2026-06-01"
+  }
+}
